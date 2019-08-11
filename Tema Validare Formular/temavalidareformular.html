@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Validare formular tema </title>
+
+    <style>
+        h1 {
+            text-align: center;
+        }
+        
+        .greenbackground {
+            background-color: green;
+        }
+
+        .redcolor {
+            background-color: red;
+            color:yellow;
+            
+        }
+
+    </style>
+
+    <script>
+
+        function valid1 (formular,event) {
+            event.preventDefault();
+            var nume1 = formular.querySelector("[name='nume1']");
+            var prenume1 = formular.querySelector("[name='prenume1']");
+            if(nume1.value === prenume1.value){
+                nume1.classList.add("greenbackground");
+                prenume1.classList.add("greenbackground");
+            }else{
+                nume1.classList.remove("greenbackground");
+                prenume1.classList.remove("greenbackground");
+            }
+        }
+
+        function valid2 (formular,event) {
+            event.preventDefault();
+            var nume2 = formular.querySelector("[name='nume2']");
+            var prenume2 = formular.querySelector("[name='prenume2']");
+            if(nume2.value === prenume2.value){
+                nume2.classList.add("greenbackground");
+                prenume2.classList.add("greenbackground");
+            }else if(nume2.value > prenume2.value) {
+                nume2.classList.add("greenbackground");
+                prenume2.classList.remove("greenbackground");
+            }else if(nume2.value < prenume2.value) {
+                nume2.classList.remove("greenbackground");
+                prenume2.classList.add("greenbackground");
+            }
+        }
+
+        function valid3(formular,event) {
+            event.preventDefault();
+            var nume3 = formular.querySelector("[name='nume3']");
+            var prenume3 = formular.querySelector("[name='prenume3']");
+            var telefon3 = formular.querySelector("[name='telefon3']");
+            if (parseInt(nume3.value) > parseInt(prenume3.value)){
+                telefon3.value = nume3.value;
+            }else {
+                telefon3.value = prenume3.value;
+            }
+        }
+
+        function valid4 (formular,event) {
+            event.preventDefault();
+            var nume4 = formular.querySelector("[name='nume4']");
+            var prenume4 = formular.querySelector("[name='prenume4']");
+            var telefon4 = formular.querySelector("[name='telefon4']");
+            var sum = 0;
+            if (nume4.value || prenume4.value){
+                telefon4.value = parseInt(nume4.value) + parseInt(prenume4.value);
+            }
+        }
+
+        function numbering (){
+            var input = document.querySelector("[name='lungime']").value;
+            document.querySelector("#text-length").innerHTML = input.length + " caractere";
+        }
+
+        function numbering2 (event){
+            var input = document.querySelector("[name='lungime2']").value;
+            document.querySelector("#text-length2").innerHTML = input.value.length + " caractere";
+            input.onkeypress = function(event) {
+                if (input.value.length >= 10) {
+                    event.preventDefault();
+                    document.querySelector("#text-length2").classList.add("redcolor");
+                }else if (input.lenght.length < 10) {
+                    document.querySelector("#text-length2").classList.remove("redcolor");
+                }
+            }
+        }
+
+        function numere(event) {
+            if ((event.keyCode < 47 || event.keyCode > 58) && event.keyCode !== 08) {
+                event.preventDefault();
+            }
+        }
+    </script>
+
+</head>
+<body>
+    <h1> Tema:Validare formular</h1>
+    <form onsubmit="validate(this,event)">
+        <fieldset>
+
+            <legend> Construiti in HTML si CSS un formular care sa contina 3 Input type
+                     text, 2 Selecturi 3 Checkboxuri, 3 Radio Buttons si un Submit. </legend>
+            <label>Nume</label> <input type="text" name="nume" placeholder="Nume..." /> <br/> <br/>
+            <label>Prenume</label> <input type="text" name="prenume" placeholder="Prenume..."/> <br/> <br/>
+            <label>Telefon</label> <input type="text" name="telefon" placeholder="Telefon..." /> <br/> <br/>
+
+            <label>Selecteaza
+                <select type="">
+                    <option value="">Alege</option>
+                    <option value="albastru">Albastru</option>
+                    <option value="galben">Galben</option>
+                    <option value="Rosu">Rosu</option>
+                </select>
+            </label> <br/> <br/>
+            
+            <label> Checkbox 1
+                <input type="checkbox" name="checkbox">
+            </label> <br/>
+            <label> Checkbox 2
+                <input type="checkbox"  name="checkbox">
+            </label> <br/>
+            <label> Checkbox 3
+                <input type="checkbox"  name="checkbox">
+            </label> <br/>
+
+            <label>Radio 1
+                <input type="radio" name="radio">
+            </label> <br/>
+            <label>Radio 2
+                <input type="radio" name="radio">
+            </label> <br/>
+            <label>Radio 3
+                <input type="radio" name="radio">
+            </label> <br/>
+            <input type="submit" value="Salveaza" />
+          
+        </fieldset>
+
+
+
+    </form>
+    <br/> <br/>
+
+
+    <form onsubmit="valid1(this,event)">
+        <fieldset>
+            <legend> 
+               1. Pastrati doar 2 inputuri si colorati ambele inputuri verzi daca valoarea din casuta 1 si din casuta 2 sunt egale
+            </legend>
+            <label>Nume</label> <input type="text" name="nume1" placeholder="Nume..." /> <br/> <br/>
+            <label>Prenume</label> <input type="text" name="prenume1" placeholder="Prenume..."/> <br/> <br/>
+            <input type="submit" value="Salveaza" />
+        </fieldset>
+    </form>
+    <br/> <br/>
+    
+    <form onsubmit="valid2(this,event)">
+            <fieldset>
+                <legend> 
+                 2. Pastrati doar 2 inputuri si colorati inputul care are valoarea mai mare. Daca sunt egale, colorati-le pe ambele
+                </legend>
+                <label>Nume</label> <input type="text" name="nume2" placeholder="Nume..." /> <br/> <br/>
+                <label>Prenume</label> <input type="text" name="prenume2" placeholder="Prenume..."/> <br/> <br/>
+                <input type="submit" value="Salveaza" />
+            </fieldset>
+    </form> <br/> <br/>
+
+    <form onsubmit="valid3(this,event)">
+            <fieldset>
+    
+                <legend> 
+                3. Pastrati doar 3 inputuri si afisati in al 3-lea input valoarea inputului mai mare dintre primul si al doilea
+                </legend>
+                <label>Nume</label> <input type="text" name="nume3" placeholder="Nume..." /> <br/> <br/>
+                <label>Prenume</label> <input type="text" name="prenume3" placeholder="Prenume..."/> <br/> <br/>
+                <label>Telefon</label> <input type="text" name="telefon3" /> <br/> <br/>
+                <input type="submit" value="Salveaza" />
+              
+            </fieldset>
+    </form> <br/> <br/>
+
+    <form onsubmit="valid4(this,event)">
+            <fieldset>
+    
+                <legend> 
+                4. Pastrati doar 3 inputuri si afisati in al 3-lea input suma primului + celui de-al 2-lea  input 
+                </legend>
+                <label>Nume</label> <input type="text" name="nume4" placeholder="Nume..." /> <br/> <br/>
+                <label>Prenume</label> <input type="text" name="prenume4" placeholder="Prenume..."/> <br/> <br/>
+                <label>Telefon</label> <input type="text" name="telefon4" /> <br/> <br/>
+                <input type="submit" value="Salveaza" />
+              
+            </fieldset>
+    </form> <br/> <br/>
+
+  
+    <fieldset>
+        <legend> 
+        5. Pastrati doar 1 input si afisati intr-un span/div in coltul dreapta jos, lungimea sirului de caractere tastat 
+        </legend>
+        <label>Lungime</label> <input type="text" name="lungime" placeholder="Lungime..." onkeyup="numbering()"/> <br/> <br/>
+        <div id="text-length">0 caractere</div>           
+    </fieldset>  <br/> <br/>      
+
+
+    <fieldset>
+            <legend> 
+            6. Plecand de la ex 5, limitati numarul de caractere la 10. In momentul in care am ajuns la 10, 
+               inrositi counterul si folosind event.preventDefault() pe evenimentul onkeypress opriti utilizatorul sa
+               mai introduca caractere in plus. 
+            </legend>
+            <label>Lungime</label> <input type="text" name="lungime2" placeholder="Lungime..." onkeyup="numbering2(event)"/> <br/> <br/>
+            <div id="text-length2">0 caractere</div>           
+        </fieldset> <br/> <br/>
+   
+
+    <fieldset class="form">
+            <legend>
+                7. Pastrati doar 1 input si folosind event.preventDefault pe evenimentul onkeypress, 
+                opriti utilizatorul sa mai introduca orice altceva decat numere.
+            </legend>
+            <label> Input <input type="text" name="input12" placeholder="Introdu aici..." onkeydown="numere(event)"/></label>
+            <br/>  <br/>
+    </fieldset>
+    </body>
+</body>
+</html>
