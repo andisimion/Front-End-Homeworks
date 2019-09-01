@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>STERGE PREPARAT</title>
+
+    <style>
+        .backgroundMeniu {
+            max-width: 1000px;
+            background-color: aquamarine;
+            border-radius: 5px;
+            margin: auto;
+        }
+
+        .topBar {
+            position: relative;
+        }
+
+        #titlu {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: 30px;
+            font-weight: bold;
+            position: relative;
+            top: 40px;
+            left: 40px;
+            margin-top: 20px;
+            color: rgb(29, 29, 167);
+
+        }
+
+        #daButton {
+            background-color: red;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 3px;
+            margin-left: 40px;
+            margin-bottom: 20px;
+
+        }
+
+        #nuButton {
+            background-color: royalblue;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 3px;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            position: relative;
+            top: 40px;
+            left: 40px;
+
+        }
+
+        h2 {
+            position: relative;
+            left: 40px;
+        }
+    </style>
+
+    <script>
+        var list = [];
+
+        async function draw() {
+            var i = window.location.search.substring(4);
+            var response = await fetch(`https://restaurant-meniu-andi.firebaseio.com/.json`);
+            list = await response.json();
+            document.querySelector("[name='nume']").innerHTML = list[i].nume;
+        }
+        async function del() {
+            event.preventDefault();
+            var i = window.location.search.substring(4);
+            var response = await fetch(`https://restaurant-meniu-andi.firebaseio.com/${i}.json`, {
+                method: "delete"
+            });
+            location.href = "admin.html";
+        }
+
+    </script>
+</head>
+
+<body onload=draw();>
+    <div class="backgroundMeniu">
+        <div class="topBar">
+            <p id="titlu">Cald si Bun (Admin)</p>
+        </div>
+
+        <h1> Esti pe cale sa stergi preparatul</h1>
+        </br> </br>
+        <h2> Confirmi stergerea?</h2>
+        </br> </br>
+
+        <button id="daButton" onclick="del()">DA</button>
+
+        <a href="admin.html">
+            <button id="nuButton">NU</button>
+        </a>
+
+    </div>
+
+</body>
+
+</html>

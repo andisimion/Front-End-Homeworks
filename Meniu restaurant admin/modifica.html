@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MODIFICA</title>
+
+    <style>
+        .backgroundMeniu {
+            max-width: 1000px;
+            background-color: aquamarine;
+            border-radius: 5px;
+            margin: auto;
+
+        }
+
+        #titlu {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: 30px;
+            font-weight: bold;
+            position: relative;
+            top: 30px;
+            left: 30px;
+        }
+
+        .backgroundMeniu .backgroundForm {
+            margin-left: 30px;
+            margin-top: 60px;
+        }
+
+        label {
+            font-weight: bold;
+
+
+        }
+
+        .salveazaPreparat {
+            width: 130px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: rgb(83, 148, 245);
+            color: white;
+            border: none;
+            text-decoration: none;
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <script>
+
+        var list = [];
+        var i = window.location.search.substring(4);
+        async function edit() {
+            event.preventDefault();
+            var response = await fetch("https://restaurant-meniu-andi.firebaseio.com/.json");
+            list = await response.json();
+
+            document.querySelector("[name='nume']").value = list[i].nume;
+            document.querySelector("[name='urlImagine']").value = list[i].urlImagine;
+            document.querySelector("[name='ingrediente']").value = list[i].ingrediente;
+            document.querySelector("[name='preparare']").value = list[i].preparare;
+        }
+
+        async function add(event) {
+            event.preventDefault();
+
+            var obj = {
+                nume: document.querySelector("[name='nume']").value,
+                imagine: document.querySelector("[name='urlImagine']").value,
+                ingrediente: document.querySelector("[name='ingrediente']").value,
+                reteta: document.querySelector("[name='preparare']").value,
+            }
+            list[i] = obj;
+
+            var response = await fetch(`https://restaurant-meniu-andi.firebaseio.com/${i}.json`, {
+                method: "put",
+                body: JSON.stringify(obj)
+            });
+            location.href = "Restaurant menu admin.html";
+        }
+
+    </script>
+</head>
+
+<body onload="edit()">
+    <div class="backgroundMeniu">
+        <span id="titlu">Cald si Bun (Admin)</span>
+        <div class="backgroundForm">
+            <form onsubmit="">
+                <label>
+                    Nume:
+                    <input type="text" name="nume" id="name">
+                </label> </br> </br>
+                <label>
+                    URL Imagine:
+                    <input type="text" name="urlImagine" id="url">
+                </label> </br> </br>
+                <label>
+                    Ingrediente:
+                    <textarea name="ingrediente" id="ingredients"></textarea>
+                </label> </br> </br> </br>
+                <label>
+                    Mod de preparare:
+                    <textarea name="preparare" id="preparing"></textarea>
+                </label> </br> </br> </br> </br>
+
+                <button class="salveazaPreparat">Salveaza preparat</button>
+
+            </form>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
