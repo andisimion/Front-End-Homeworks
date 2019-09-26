@@ -119,7 +119,7 @@
         var list = [];
 
         async function draw() {
-            var response = await fetch("https://proiect-final-andi.firebaseio.com/.json")
+            var response = await fetch("https://proiect-final-andi.firebaseio.com/produse/.json")
             window.list = await response.json();
 
             var str = "";
@@ -151,7 +151,7 @@
 </head>
 
 <body onload="draw();">
-    <div class="backgroundWeb">
+    <div class="backgroundWeb";>
         <div id="topBar">
             <div>
                 <p id="title1">Bazar la Andi</p>

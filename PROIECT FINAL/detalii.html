@@ -103,18 +103,17 @@
 
 
     <script>
-
         var list = [];
         var i = window.location.search.substring(4);
-             
+
         async function draw() {
-            
-            var response = await fetch(`https://proiect-final-andi.firebaseio.com/${i}.json`);
+
+            var response = await fetch(`https://proiect-final-andi.firebaseio.com/produse/${i}.json`);
             window.product = await response.json();
 
             var str = "";
-            
-                str += `
+
+            str += `
                 <div class="col-lg-4 col-sm-6 col-xs-12 product">
                     <div id="imgBox">
                         <img class="imgProd" src="${product.imagine}" alt="${product.nume}">
@@ -126,20 +125,31 @@
                         </div>
                         <div>
                             <span>In stoc:${product.stoc}</span> </br> </br>
-                            <span>Cantitate:</span> <input type="number" name="quantity" min=1 max=${product.stoc}> </br> </br>
+                            <span>Cantitate:</span> <input type="number" name="quantity" min="1" max="${product.stoc}"> </br> </br>
                         </div>
-                        <button onclick="addProd" id="addButton">Adauga in cos</button>
+                        <button onclick="cos()" id="addButton">Adauga in cos</button>
                     </div>
                 </div>
          
             `
-                document.querySelector("#showInfo").innerHTML = str;
+            document.querySelector("#showInfo").innerHTML = str;
         }
 
-        function addProduct() {
-            
-        }
+        async function cos() {
 
+            var obj = {
+                nume: product.nume,
+                pret: product.pret,
+                stoc: product.stoc,
+                cantitate: document.querySelector("[name='quantity']").value
+            }
+            var response = await fetch(`https://proiect-final-andi.firebaseio.com/cos/${i}.json`, {
+                method: "put",
+                body: JSON.stringify(obj)
+            });
+
+            alert("Produsul tau a fost adaugat in cos");
+        }
     </script>
 
 </head>
@@ -150,9 +160,11 @@
             <a href="bazar.html" id="toFirstPage">
                 <p id="title1">Bazar la Andi</p>
             </a>
-          
-             <button id="shopButton" onclick="location.href='coscumparaturi.html'"><img id="cartImg" src="cart.svg" />Cos cumparaturi</button>
-            
+
+            <button id="shopButton" onclick="location.href='coscumparaturi.html'">
+                <img id="cartImg" src="cart.svg" />
+                Cos cumparaturi</button>
+
         </div>
 
         <div id="showInfo"></div>
