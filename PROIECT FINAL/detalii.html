@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Detalii</title>
     <link rel="stylesheet" type="text/css" href="grid.css">
-
+    
     <style>
         .backgroundWeb {
             max-width: 80%;
@@ -125,7 +125,7 @@
                         </div>
                         <div>
                             <span>In stoc:${product.stoc}</span> </br> </br>
-                            <span>Cantitate:</span> <input type="number" name="quantity" min="1" max="${product.stoc}"> </br> </br>
+                            <span>Cantitate:</span> <input type="number" name="quantity" value="1" min="1" max="${product.stoc}"> </br> </br>
                         </div>
                         <button onclick="cos()" id="addButton">Adauga in cos</button>
                     </div>
@@ -138,6 +138,7 @@
         async function cos() {
 
             var obj = {
+                imagine: product.imagine,
                 nume: product.nume,
                 pret: product.pret,
                 stoc: product.stoc,
@@ -148,7 +149,6 @@
                 body: JSON.stringify(obj)
             });
 
-            alert("Produsul tau a fost adaugat in cos");
         }
     </script>
 

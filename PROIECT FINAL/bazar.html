@@ -16,9 +16,11 @@
 
         #topBar {
             display: grid;
-            grid-template-columns: 6.5fr 1fr 1fr;
+            grid-template-columns: 3fr 1fr;
             grid-column-gap: 20px;
-            margin-bottom: 20px;
+            height: 60px;
+            border-radius: 5px;
+            background-color: rgb(0, 94, 184);
         }
 
         #showProducts {
@@ -35,23 +37,21 @@
 
         #topBar #title1 {
             font-family: Verdana, Geneva, Tahoma, sans-serif;
-            height: 30px;
-            margin: 5px;
+            margin: 10px 25px;
             font-size: 30px;
+            background-color: none;
+            color: white;
 
         }
 
         #topBar #shopButton {
-            width: 200px;
-            background-color: rgb(44, 154, 228);
-            border: none;
-            border-radius: 5px;
+
             color: white;
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            font-size: 20px;
-            justify-self: right;
-            height: 40px;
-
+            font-size: 25px;
+            text-decoration: none;
+            margin: auto;
+            
         }
 
         #cartImg {
@@ -179,14 +179,15 @@
                     </svg> Cos cumparaturi</button>
             </div>
             <div>
-                <button onclick="location.href='admin.html'" id="adminButton"> <svg xmlns="http://www.w3.org/2000/svg"
-                        xml:space="preserve" width="10.7963mm" height="5mm" version="1.1"
-                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-                        viewBox="0 0 0.61 0.82" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <g id="img">
-                            <metadata id="CorelCorpID_0Corel-Layer" />
-                            <path class="fil0"
-                                d="M0.53 0.32l0 -0.24c0,-0.05 -0.04,-0.09 -0.09,-0.09l-0.28 0c-0.05,0 -0.09,0.04 -0.09,0.09l0 0.24 -0.08 0 0 0.5 0.61 0 0 -0.5 -0.08 0zm-0.38 -0.16l0 0c0,-0.05 0.04,-0.09 0.09,-0.09l0.12 0c0.05,0 0.09,0.04 0.09,0.09l0 0.16 -0.3 0 0 -0.16zm0.2 0.53l0 0c0,0.03 -0.02,0.05 -0.05,0.05 -0.03,0 -0.05,-0.02 -0.05,-0.05l0 -0.19c0,-0.03 0.02,-0.05 0.05,-0.05 0.03,0 0.05,0.02 0.05,0.05l0 0.19z" />
+                <button onclick="location.href='admin.html'" id="adminButton"> 
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            xml:space="preserve" width="10.7963mm" height="5mm" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 0.61 0.82" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="img">
+                                <metadata id="CorelCorpID_0Corel-Layer" />
+                                <path class="fil0"
+                                    d="M0.53 0.32l0 -0.24c0,-0.05 -0.04,-0.09 -0.09,-0.09l-0.28 0c-0.05,0 -0.09,0.04 -0.09,0.09l0 0.24 -0.08 0 0 0.5 0.61 0 0 -0.5 -0.08 0zm-0.38 -0.16l0 0c0,-0.05 0.04,-0.09 0.09,-0.09l0.12 0c0.05,0 0.09,0.04 0.09,0.09l0 0.16 -0.3 0 0 -0.16zm0.2 0.53l0 0c0,0.03 -0.02,0.05 -0.05,0.05 -0.03,0 -0.05,-0.02 -0.05,-0.05l0 -0.19c0,-0.03 0.02,-0.05 0.05,-0.05 0.03,0 0.05,0.02 0.05,0.05l0 0.19z" />
                         </g>
                     </svg> Admin
                 </button>
