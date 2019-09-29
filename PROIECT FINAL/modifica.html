@@ -57,7 +57,7 @@
             background-color: rgb(228, 241, 249);
         }
 
-        #adaugareProdus {
+        #modificaProdus {
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             font-size: 30px;
         }
@@ -105,8 +105,23 @@
 
     <script>
 
-        async function add(event) {
+        var list = [];
+        
+        async function editare() {
+            var i = window.location.search.substring(4);
+            var response = await fetch(`https://proiect-final-andi.firebaseio.com/produse.json`);
+            list = await response.json();
+
+            document.querySelector("[name='nume']").value = list[i].nume;
+            document.querySelector("[name='imagine']").value = list[i].imagine;
+            document.querySelector("[name='descriere']").value = list[i].descriere;
+            document.querySelector("[name='pret']").value = list[i].pret;
+            document.querySelector("[name='stoc']").value = list[i].stoc;
+        }
+
+        async function adauga(event) {
             event.preventDefault();
+            var i = window.location.search.substring(4);
             var obj = {
                 nume: document.querySelector("[name='nume']").value,
                 imagine: document.querySelector("[name='imagine']").value,
@@ -114,25 +129,21 @@
                 pret: document.querySelector("[name='pret']").value,
                 stoc: document.querySelector("[name='stoc']").value,
             }
-            var response = await fetch(`https://proiect-final-andi.firebaseio.com/produse/.json`, {
-                method: "post",
+            list[i] = obj;
+
+            var response = await fetch(`https://proiect-final-andi.firebaseio.com/produse/${i}.json`, {
+                method: "put",
                 body: JSON.stringify(obj)
             });
-        
             location.href = "admin.html";
         }
-
-
-
+       
 
     </script>
 
-
-
-
 </head>
 
-<body>
+<body onload="editare();">
     <div class="container">
         <div id="topBar" class="row">
             <a href="bazar.html" id="toFirstPage">
@@ -164,19 +175,19 @@
 
         <div class="infoTable">
             <div>
-                <span id="adaugareProdus">Adaugare produs</span>
+                <span id="modificaProdus">Modifica produs</span>
                 <button onclick="location.href='admin.html'" id="cancelButton">Anuleaza</button>
-                <button onclick="add(event);" id="saveButton">Salvare</button>
+                <button onclick="adauga(event);" id="saveButton">Salvare</button>
 
             </div> </br> </br>
 
             <div>
-                <span class="infoText">Imagine:</span> <input type="text" id="imagineProd" name="imagine"> </br> </br>
-                <span class="infoText">Nume:</span> <input type="text" id="numeProd" name="nume"> </br> </br>
-                <span class="infoText">Descriere:</span> <input type="textarea" id="descriereProd" name="descriere">
+                <span class="infoText">Imagine:</span> <input type="text"  name="imagine"> </br> </br>
+                <span class="infoText">Nume:</span> <input type="text"  name="nume"> </br> </br>
+                <span class="infoText">Descriere:</span> <input type="textarea" name="descriere">
                 </br> </br>
-                <span class="infoText">Pret:</span> <input type="text" id="pretProd" name="pret"> </br> </br>
-                <span class="infoText">Stoc:</span> <input type="text" id="cantitateProd" name="stoc"> </br> </br>
+                <span class="infoText">Pret:</span> <input type="text"  name="pret"> </br> </br>
+                <span class="infoText">Stoc:</span> <input type="text"  name="stoc"> </br> </br>
             </div>
 
         </div>

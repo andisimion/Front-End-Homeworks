@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="grid.css">
     
     <style>
-        .backgroundWeb {
+        .container {
             max-width: 80%;
             margin: 0 auto;
         }
@@ -20,39 +20,45 @@
         }
 
         #topBar {
-            display: grid;
-            grid-template-columns: 3fr 1fr;
-            grid-column-gap: 20px;
-            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            height: 60px;
+            margin-top: 10px;
+            border-radius: 5px;
+            background-color: rgb(0, 94, 184);
         }
 
         .product {
             width: 70%;
             height: 300px;
             border: solid lightgrey 1px;
-
-
         }
 
         #topBar #title1 {
             font-family: Verdana, Geneva, Tahoma, sans-serif;
-            height: 30px;
-            margin: 5px;
+            margin: 12px 25px;
             font-size: 30px;
-
+            color: white;
+            text-decoration: none;
         }
 
-        #topBar #shopButton {
-            width: 200px;
-            height: 40px;
-            background-color: white;
-            color: black;
-            border: solid lightgrey 1px;
-            border-radius: 5px;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            font-size: 20px;
-            justify-self: right;
 
+        #topBar #shopButton {
+            color: white;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 25px;
+            text-decoration: none;
+            margin: auto;
+            text-align: center;
+        }
+
+        .nine.columns {
+            height: 60px;
+        }
+
+        .three.columns {
+            margin: auto;
+            margin-right: 25px;
         }
 
         #topBar #shopButton #cartImg {
@@ -61,18 +67,24 @@
             margin-right: 10px;
         }
 
-        .product .imgProd {
+        .product #imgBox .imgProd {
             max-width: 100%;
             height: 285px;
             float: right;
-            margin-right: 10px;
+            margin-right: 50px;
             margin-top: 7.5px;
         }
 
-        .backgroundWeb .product {
+        .prodDetails {
+            margin: auto;
+        }
+
+        .container .product {
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-column-gap: 5px;
+            margin: auto;
+            margin-top: 50px;
         }
 
         .infoProducts {
@@ -130,7 +142,7 @@
                         <button onclick="cos()" id="addButton">Adauga in cos</button>
                     </div>
                 </div>
-         
+
             `
             document.querySelector("#showInfo").innerHTML = str;
         }
@@ -148,24 +160,48 @@
                 method: "put",
                 body: JSON.stringify(obj)
             });
-
+            alert("Ai adaugat in cos")
         }
     </script>
 
 </head>
 
 <body onload="draw();">
-    <div class="backgroundWeb">
-        <div id="topBar">
-            <a href="bazar.html" id="toFirstPage">
-                <p id="title1">Bazar la Andi</p>
-            </a>
 
-            <button id="shopButton" onclick="location.href='coscumparaturi.html'">
-                <img id="cartImg" src="cart.svg" />
-                Cos cumparaturi</button>
+    <div class="container">
+        <div id="topBar" class="row">
+            <div class="nine columns">
+                <a href="bazar.html" id="toFirstPage">
+                    <p id="title1">Andi`s Market</p>
+                </a>
+            </div>
+
+            <div class="three columns">
+                <a href="coscumparaturi.html" id="shopButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="11mm" height="5mm" version="1.1"
+                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill:white; fill-rule:evenodd; clip-rule:evenodd"
+                        viewBox="0 0 2.24 1.93" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <defs>
+
+                        </defs>
+                        <g id="img">
+                            <metadata id="CorelCorpID_0Corel-Layer" />
+                            <g id="_1868403189424">
+                                <path class="fil0"
+                                    d="M1.77 1.52c0.11,0 0.21,0.09 0.21,0.21 0,0.11 -0.09,0.21 -0.21,0.21 -0.11,0 -0.21,-0.09 -0.21,-0.21 0,-0.11 0.09,-0.21 0.21,-0.21zm0 0.34l0 0c0.08,0 0.14,-0.06 0.14,-0.14 0,-0.08 -0.06,-0.14 -0.14,-0.14 -0.08,0 -0.14,0.06 -0.14,0.14 0,0.08 0.06,0.14 0.14,0.14z" />
+                                <path class="fil0"
+                                    d="M0.96 1.52c0.11,0 0.21,0.09 0.21,0.21 0,0.11 -0.09,0.21 -0.21,0.21 -0.11,0 -0.21,-0.09 -0.21,-0.21 0,-0.11 0.09,-0.21 0.21,-0.21zm0 0.34l0 0c0.08,0 0.14,-0.06 0.14,-0.14 0,-0.08 -0.06,-0.14 -0.14,-0.14 -0.08,0 -0.14,0.06 -0.14,0.14 0,0.08 0.06,0.14 0.14,0.14z" />
+                                <path class="fil0"
+                                    d="M0.06 0l0 0.03 0.41 0 0.13 0.34 1.65 0 -0.31 1.08 -1.18 0 -0.31 -1.08 0.08 0 -0.11 -0.26 -0.41 0 0 -0.1 0.06 0zm1.25 0.43l0 0c-0.12,0 -0.24,0 -0.35,0l0.04 0.29 0.31 0 0 -0.29zm0.85 0l0 0c-0.04,0 -0.18,0 -0.36,0l-0.03 0.29 0.31 0c0.04,-0.13 0.07,-0.25 0.08,-0.29zm-0.1 0.35l0 0 -0.3 0 -0.03 0.28 0.26 0c0.03,-0.09 0.05,-0.19 0.08,-0.28zm-0.17 0.6l0 0c0.01,-0.03 0.04,-0.14 0.08,-0.27l-0.25 0 -0.03 0.27c0.1,0 0.18,0 0.21,0zm-0.52 0l0 0c0.09,0 0.18,0 0.26,0l0.03 -0.27 -0.3 0 0 0.27zm0 -0.32l0 0 0.3 0 0.04 -0.28 -0.34 0 0 0.28zm0 -0.34l0 0 0.34 0 0.04 -0.29c-0.12,0 -0.25,0 -0.38,0l0 0.29zm-0.28 0.66l0 0c0.07,0 0.14,0 0.22,0l0 -0.27 -0.26 0 0.04 0.27zm0.22 -0.32l0 0 0 -0.28 -0.3 0 0.04 0.28 0.26 0zm-0.5 0.32l0 0c0.02,0 0.11,0 0.22,0l-0.04 -0.27 -0.25 0c0.04,0.14 0.07,0.25 0.08,0.27zm-0.09 -0.32l0 0 0.26 0 -0.04 -0.28 -0.3 0c0.03,0.09 0.05,0.19 0.08,0.28zm-0.1 -0.34l0 0 0.31 0 -0.04 -0.29c-0.17,0 -0.31,0 -0.35,0 0.01,0.05 0.05,0.16 0.08,0.29z" />
+                            </g>
+                        </g>
+                    </svg>
+                    Cos cumparaturi
+                </a>
+            </div>
 
         </div>
+
 
         <div id="showInfo"></div>
     </div>
